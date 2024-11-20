@@ -11,7 +11,7 @@ const Layout = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("w-full max-h-[34rem] overflow-y-auto", className)}>
+    <div className={cn("max-h-[34rem] w-full overflow-y-auto", className)}>
       <Header />
       {children}
       {/* TODO: Footer */}
