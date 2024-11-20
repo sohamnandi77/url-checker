@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Header } from "@/components/header";
 
 const Layout = ({
   children,
@@ -11,7 +12,7 @@ const Layout = ({
 }) => {
   return (
     <div className={cn("w-full max-h-[34rem] overflow-y-auto", className)}>
-      {/* TODO: Header */}
+      <Header />
       {children}
       {/* TODO: Footer */}
     </div>
