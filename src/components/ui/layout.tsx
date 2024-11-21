@@ -17,10 +17,10 @@ export const Layout = ({
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <div className={cn("w-full", className)}>
         <Header />
-        <ScrollArea className="h-96 w-full">
-          <div className="h-[calc(384px-52px)]">{children}</div>
-          <Footer />
+        <ScrollArea className="w-full">
+          <div className="p-5">{children}</div>
         </ScrollArea>
+        <Footer />
       </div>
     </ThemeProvider>
   );
