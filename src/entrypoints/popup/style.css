@@ -54,6 +54,6 @@
     @apply border-border;
   }
   body {
-    @apply min-h-[24rem] min-w-[25rem] max-w-[34rem] bg-background font-geist text-foreground antialiased;
+    @apply min-w-[25rem] max-w-[34rem] bg-background font-geist text-foreground antialiased;
   }
 }

@@ -3,9 +3,10 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const Layout = ({
+export const Layout = ({
   children,
   className,
 }: {
@@ -14,13 +15,13 @@ const Layout = ({
 }) => {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <div className={cn("max-h-[34rem] w-full overflow-y-auto", className)}>
+      <div className={cn("w-full", className)}>
         <Header />
-        <div>{children}</div>
-        <Footer />
+        <ScrollArea className="h-96 w-full">
+          <div className="h-[calc(384px-52px)]">{children}</div>
+          <Footer />
+        </ScrollArea>
       </div>
     </ThemeProvider>
   );
 };
-
-export { Layout };
