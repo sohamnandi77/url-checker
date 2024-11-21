@@ -1,6 +1,6 @@
 import { ModeToggle } from "@/components/mode-toggle";
 
-const Header = () => {
+export const Header = () => {
   return (
     <div className="flex h-16 w-full items-center justify-between bg-primary px-5">
       <div className="flex items-center gap-3">
@@ -20,5 +20,3 @@ const Header = () => {
     </div>
   );
 };
-
-export { Header };
