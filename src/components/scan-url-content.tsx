@@ -1,10 +1,7 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { ScanUrlForm } from "@/components/scan-url-form";
 import {
   Card,
   CardTitle,
-  CardFooter,
   CardHeader,
   CardContent,
   CardDescription,
@@ -18,19 +15,8 @@ export const ScanUrlContent = () => {
         <CardDescription>Enter the URL you want to scan here.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
-        <div className="space-y-1">
-          <Label htmlFor="scanurl">URL</Label>
-          <Input
-            type="url"
-            id="scanurl"
-            name="scanurl"
-            placeholder="https://example.com"
-          />
-        </div>
+        <ScanUrlForm />
       </CardContent>
-      <CardFooter>
-        <Button>Scan</Button>
-      </CardFooter>
     </Card>
   );
 };
