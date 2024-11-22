@@ -1,16 +1,7 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/ui/layout";
+import { ScanUrlContent } from "@/components/scan-url-content";
+import { UnshortenUrlContent } from "@/components/unshorten-url-content";
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Card,
-  CardTitle,
-  CardFooter,
-  CardHeader,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
 
 export default function App() {
   return (
@@ -21,52 +12,10 @@ export default function App() {
           <TabsTrigger value="unshortenurl">Unshorten URL</TabsTrigger>
         </TabsList>
         <TabsContent value="scanurl">
-          <Card>
-            <CardHeader>
-              <CardTitle>Scan URL</CardTitle>
-              <CardDescription>
-                Enter the URL you want to scan here.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="scanurl">URL</Label>
-                <Input
-                  type="url"
-                  id="scanurl"
-                  name="scanurl"
-                  placeholder="https://example.com"
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Scan</Button>
-            </CardFooter>
-          </Card>
+          <ScanUrlContent />
         </TabsContent>
         <TabsContent value="unshortenurl">
-          <Card>
-            <CardHeader>
-              <CardTitle>Unshorten URL</CardTitle>
-              <CardDescription>
-                Enter the URL you want to unshorten here.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="unshortenurl">URL</Label>
-                <Input
-                  type="url"
-                  id="unshortenurl"
-                  name="unshortenurl"
-                  placeholder="https://shorturl.at/"
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Unshorten</Button>
-            </CardFooter>
-          </Card>
+          <UnshortenUrlContent />
         </TabsContent>
       </Tabs>
     </Layout>
