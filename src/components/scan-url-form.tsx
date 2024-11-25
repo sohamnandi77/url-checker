@@ -1,22 +1,22 @@
 import * as z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
 import { LoaderCircle } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { getRequest, postRequest } from "@/lib/api-helper";
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
+  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 
 const formSchema = z.object({
-  scanurl: z.string().min(1, "URL is required").url(),
+  url: z.string().min(1, "URL is required").url(),
 });
 
 export const ScanUrlForm = () => {
@@ -25,21 +25,22 @@ export const ScanUrlForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      scanurl: "",
+      url: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/scan", values);
-      console.log(response.data);
+      const scanResponse = await postRequest("/urls", values);
+      const analysisId = scanResponse.data.id;
+      const analysisIdArray = analysisId.split("-");
+      const id = analysisIdArray[1];
+
+      const reportResponse = await getRequest(`/urls/${id}`);
+      console.log(reportResponse.data);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        console.error(error.response?.data);
-      } else {
-        console.error(error);
-      }
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -53,7 +54,7 @@ export const ScanUrlForm = () => {
       >
         <FormField
           control={form.control}
-          name="scanurl"
+          name="url"
           render={({ field }) => (
             <FormItem className="flex-1">
               <FormControl>
