@@ -6,6 +6,9 @@ export default defineConfig({
   srcDir: "src",
   extensionApi: "chrome",
   modules: ["@wxt-dev/module-react"],
+  manifest: {
+    host_permissions: ["<all_urls>"],
+  },
   vite: () => ({
     plugins: [
       Unfonts({
