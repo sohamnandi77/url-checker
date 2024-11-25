@@ -2,14 +2,15 @@ import { AxiosResponse, AxiosError } from "axios";
 
 import { axios } from "@/lib/axios-config";
 
-export const getRequest = async <T extends { id?: string }, R>(
-  params: T,
+interface Params {
+  [key: string]: string | number | boolean;
+}
+
+export const getRequest = async <R = any>(
   url: string,
+  params?: Params,
 ): Promise<R> => {
   try {
-    if (params.id && typeof params.id !== "string") {
-      throw new Error("id must be a string");
-    }
     const response: AxiosResponse<R> = await axios.get(url, { params });
     return response.data;
   } catch (error) {
@@ -23,12 +24,12 @@ export const getRequest = async <T extends { id?: string }, R>(
 export const postRequest = async <T, R = any>(
   url: string,
   data: T,
-  params: Record<string, any> = {},
+  params?: Params,
 ): Promise<R> => {
   try {
     const response: AxiosResponse<R> = await axios.post(url, data, {
       params,
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
     return response.data;
   } catch (error) {
