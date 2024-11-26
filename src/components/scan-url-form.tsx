@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,13 +14,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+interface ScanUrlFormProps {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  setData: (data: any) => void;
+}
+
 const formSchema = z.object({
   url: z.string().min(1, "URL is required").url(),
 });
 
-export const ScanUrlForm = () => {
-  const [loading, setLoading] = useState(false);
-
+export const ScanUrlForm = ({
+  loading,
+  setLoading,
+  setData,
+}: ScanUrlFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,13 +39,17 @@ export const ScanUrlForm = () => {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
+      // scan url
       const scanResponse = await postRequest("/urls", values);
       const analysisId = scanResponse.data.id;
-      const analysisIdArray = analysisId.split("-");
-      const id = analysisIdArray[1];
 
+      // analyse url
+      const analyseResponse = await getRequest(`/analyses/${analysisId}`);
+      const id = analyseResponse.data.id.split("-")[1];
+
+      // get url report
       const reportResponse = await getRequest(`/urls/${id}`);
-      console.log(reportResponse.data);
+      setData(reportResponse.data);
     } catch (error) {
       console.error(error);
     } finally {

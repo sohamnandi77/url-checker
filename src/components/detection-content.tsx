@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleAlert, Info } from "lucide-react";
+import { CheckCircle2, CircleAlert, CircleHelp, Info } from "lucide-react";
 
 import {
   Tooltip,
@@ -56,11 +56,16 @@ export const DetectionContent = ({ analysis }: DetectionContentProps) => {
             <div className="flex items-center space-x-1.5">
               {analysis[engineName].result === "clean" ? (
                 <CheckCircle2 size={16} className="text-green-500" />
-              ) : (
+              ) : analysis[engineName].result === "malicious" ? (
                 <CircleAlert size={16} className="text-red-500" />
+              ) : analysis[engineName].result === "suspicious" ? (
+                <CircleAlert size={16} className="text-yellow-500" />
+              ) : (
+                <CircleHelp size={16} className="text-gray-500" />
               )}
               <p className="text-xs text-muted-foreground">
-                {analysis[engineName].result}
+                {analysis[engineName].result.charAt(0).toUpperCase() +
+                  analysis[engineName].result.slice(1)}
               </p>
             </div>
           </div>

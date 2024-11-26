@@ -7,7 +7,23 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 
-export const DetailsContent = () => {
+type Category = {
+  [key: string]: string;
+};
+
+interface DetailsContentProps {
+  categories: Category;
+  final_url: string;
+  status_code: number;
+  redirection_chain: string[];
+}
+
+export const DetailsContent = ({
+  categories,
+  final_url,
+  status_code,
+  redirection_chain,
+}: DetailsContentProps) => {
   return (
     <div className="grid gap-2">
       <div className="flex flex-col">
@@ -33,22 +49,16 @@ export const DetailsContent = () => {
           </TooltipProvider>
         </div>
         <div className="flex w-full flex-col space-y-2">
-          <div className="flex flex-col">
-            <p className="text-start text-xs font-semibold text-muted-foreground">
-              alphaMountain.ai
-            </p>
-            <p className="text-start text-xs text-muted-foreground">
-              Information Technology, Malicious (alphaMountain.ai)
-            </p>
-          </div>
-          <div className="flex flex-col">
-            <p className="text-start text-xs font-semibold text-muted-foreground">
-              Forcepoint ThreatSeeker
-            </p>
-            <p className="text-start text-xs text-muted-foreground">
-              parked domain
-            </p>
-          </div>
+          {Object.keys(categories).map((category, i) => (
+            <div className="flex flex-col">
+              <p className="text-start text-xs font-semibold text-muted-foreground">
+                {category}
+              </p>
+              <p className="text-start text-xs text-muted-foreground">
+                {categories[category]}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -80,14 +90,16 @@ export const DetailsContent = () => {
               Final URL
             </p>
             <p className="text-start text-xs text-muted-foreground">
-              https://hdvideoforums.org/
+              {final_url}
             </p>
           </div>
           <div className="flex flex-col">
             <p className="text-start text-xs font-semibold text-muted-foreground">
               Status Code
             </p>
-            <p className="text-start text-xs text-muted-foreground">200</p>
+            <p className="text-start text-xs text-muted-foreground">
+              {status_code}
+            </p>
           </div>
         </div>
       </div>
@@ -116,12 +128,11 @@ export const DetailsContent = () => {
         </div>
         <div className="flex w-full flex-col space-y-2">
           <div className="flex flex-col">
-            <p className="text-start text-xs text-muted-foreground">
-              https://hdvideoforums.org/
-            </p>
-            <p className="text-start text-xs text-muted-foreground">
-              https://hdvideoforums.org/
-            </p>
+            {redirection_chain.map((url, i) => (
+              <p className="text-start text-xs text-muted-foreground" key={i}>
+                {url}
+              </p>
+            ))}
           </div>
         </div>
       </div>
