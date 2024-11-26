@@ -19,7 +19,7 @@ export const RadialProgress = ({ progress, total }: RadialProgressProps) => {
           r="16"
           fill="none"
           className="stroke-current text-gray-200 dark:text-neutral-700"
-          stroke-width="3.5"
+          strokeWidth="3.5"
         ></circle>
 
         <circle
@@ -28,10 +28,10 @@ export const RadialProgress = ({ progress, total }: RadialProgressProps) => {
           r="16"
           fill="none"
           className="stroke-current text-red-500 dark:text-red-500"
-          stroke-width="3.5"
-          stroke-dasharray="100"
-          stroke-dashoffset={100 - percentage}
-          stroke-linecap="round"
+          strokeWidth="3.5"
+          strokeDasharray="100"
+          strokeDashoffset={100 - percentage}
+          strokeLinecap="round"
         ></circle>
       </svg>
 
