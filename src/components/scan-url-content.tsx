@@ -1,7 +1,15 @@
 import { useState } from "react";
+import { Undo2 } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { UrlReport } from "@/components/url-report";
 import { ScanUrlForm } from "@/components/scan-url-form";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 import {
   Card,
   CardTitle,
@@ -15,31 +23,55 @@ export const ScanUrlContent = () => {
   const [data, setData] = useState<any>(null);
 
   return (
-    <Card>
+    <>
       {!data && (
-        <CardHeader>
-          <CardTitle>Scan URL</CardTitle>
-          <CardDescription>
-            Enter the URL you want to scan here.
-          </CardDescription>
-        </CardHeader>
-      )}
-      <CardContent className="p-0">
-        {!data && (
-          <div className="space-y-2 p-6 pt-0">
+        <Card>
+          <CardHeader>
+            <CardTitle>Scan URL</CardTitle>
+            <CardDescription>
+              Enter the URL you want to scan here.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2 p-6 pt-0">
             <ScanUrlForm
               loading={loading}
               setLoading={setLoading}
               setData={setData}
             />
-          </div>
-        )}
-        {data && (
-          <div className="w-full p-4 pb-2">
-            <UrlReport data={data} />
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
+      )}
+
+      {data && (
+        <>
+          <Card className="relative">
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-2 h-6 w-6"
+                    onClick={() => setData(null)}
+                  >
+                    <Undo2 />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-48 text-xs">Reset the URL scan report.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <CardHeader className="p-4 pb-0">
+              <CardTitle>URL Scan Report</CardTitle>
+            </CardHeader>
+            <CardContent className="w-full p-4 pb-2">
+              <UrlReport data={data} />
+            </CardContent>
+          </Card>
+        </>
+      )}
+    </>
   );
 };
