@@ -10,7 +10,7 @@ export const Footer = () => {
     <Accordion
       type="single"
       collapsible
-      className="w-full bg-zinc-300 px-5 dark:bg-zinc-200"
+      className="w-full bg-zinc-200 px-5 dark:bg-zinc-300"
     >
       <AccordionItem className="!border-none" value="item-1">
         <AccordionTrigger className="hover:no-underline">

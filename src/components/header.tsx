@@ -2,7 +2,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 export const Header = () => {
   return (
-    <div className="flex h-16 w-full items-center justify-between bg-primary px-5 dark:bg-zinc-100">
+    <div className="flex h-16 w-full items-center justify-between bg-primary px-5 dark:bg-zinc-200">
       <div className="flex items-center gap-3">
         <img
           src="/url-checker.png"
