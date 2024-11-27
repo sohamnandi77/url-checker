@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Undo2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { UrlReport } from "@/components/url-report";
 import { ScanUrlForm } from "@/components/scan-url-form";
+import { ScanUrlReport } from "@/components/scan-url-report";
 import {
   Tooltip,
   TooltipContent,
@@ -66,7 +66,7 @@ export const ScanUrlContent = () => {
             <CardTitle>URL Scan Report</CardTitle>
           </CardHeader>
           <CardContent className="w-full p-4 pb-2">
-            <UrlReport data={data} />
+            <ScanUrlReport data={data} />
           </CardContent>
         </Card>
       )}

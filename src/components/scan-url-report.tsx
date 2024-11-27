@@ -14,11 +14,11 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-interface UrlReportProps {
+interface ScanUrlReportProps {
   data: any;
 }
 
-export const UrlReport = ({ data }: UrlReportProps) => {
+export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
   const now = new Date();
   const date = new Date(data.attributes.last_analysis_date * 1000);
   const time_diff = formatDistance(date, now, { addSuffix: true });
