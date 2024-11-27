@@ -1,3 +1,4 @@
+import { formatDistance } from "date-fns";
 import { CheckCircle2, CircleAlert } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -18,6 +19,17 @@ interface UrlReportProps {
 }
 
 export const UrlReport = ({ data }: UrlReportProps) => {
+  const now = new Date();
+  const date = new Date(data.attributes.last_analysis_date * 1000);
+  const time_diff = formatDistance(date, now, { addSuffix: true });
+
+  const content_typeKey = Object.keys(
+    data.attributes.last_http_response_headers,
+  ).find((key) => key.toLowerCase() === "content-type");
+  const content_type = content_typeKey
+    ? data.attributes.last_http_response_headers[content_typeKey]
+    : "unknown";
+
   const progress = data.attributes.last_analysis_stats.malicious;
   const total =
     data.attributes.last_analysis_stats.malicious +
@@ -68,6 +80,28 @@ export const UrlReport = ({ data }: UrlReportProps) => {
         </div>
       </div>
 
+      <div className="mt-6 flex h-7 items-center justify-between">
+        <div className="flex flex-col">
+          <p className="text-xs font-semibold text-muted-foreground">Status</p>
+          <p className="text-xs text-muted-foreground">
+            {data.attributes.last_http_response_code}
+          </p>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex flex-col">
+          <p className="text-xs font-semibold text-muted-foreground">
+            Content Type
+          </p>
+          <p className="text-xs text-muted-foreground">{content_type}</p>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex flex-col">
+          <p className="text-xs font-semibold text-muted-foreground">
+            Last Analysis Date
+          </p>
+          <p className="text-xs text-muted-foreground">{time_diff}</p>
+        </div>
+      </div>
       <Separator className="mb-2 mt-6" />
 
       <Accordion type="single" collapsible className="w-full">
