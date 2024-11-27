@@ -43,34 +43,32 @@ export const ScanUrlContent = () => {
       )}
 
       {data && (
-        <>
-          <Card className="relative dark:bg-muted/30">
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-2 top-2 h-6 w-6"
-                    onClick={() => setData(null)}
-                  >
-                    <Undo2 />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-48 text-xs">Reset the URL scan report.</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+        <Card className="relative dark:bg-muted/30">
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-2 top-2 h-6 w-6"
+                  onClick={() => setData(null)}
+                >
+                  <Undo2 />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-48 text-xs">Reset the URL scan report.</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
-            <CardHeader className="p-4 pb-0">
-              <CardTitle>URL Scan Report</CardTitle>
-            </CardHeader>
-            <CardContent className="w-full p-4 pb-2">
-              <UrlReport data={data} />
-            </CardContent>
-          </Card>
-        </>
+          <CardHeader className="p-4 pb-0">
+            <CardTitle>URL Scan Report</CardTitle>
+          </CardHeader>
+          <CardContent className="w-full p-4 pb-2">
+            <UrlReport data={data} />
+          </CardContent>
+        </Card>
       )}
     </>
   );
