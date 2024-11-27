@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { Info } from "lucide-react";
 
 import {
@@ -13,15 +14,23 @@ type Category = {
 
 interface DetailsContentProps {
   categories: Category;
+  first_submission_date: number;
+  last_submission_date: number;
+  last_analysis_date: number;
   final_url: string;
   status_code: number;
+  content_type: string;
   redirection_chain: string[];
 }
 
 export const DetailsContent = ({
   categories,
+  first_submission_date,
+  last_submission_date,
+  last_analysis_date,
   final_url,
   status_code,
+  content_type,
   redirection_chain,
 }: DetailsContentProps) => {
   return (
@@ -64,6 +73,62 @@ export const DetailsContent = ({
 
       <div className="flex flex-col">
         <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+          <p className="text-center text-xs text-muted-foreground">History</p>
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info
+                  size={16}
+                  className="cursor-pointer text-muted-foreground hover:text-primary/95"
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-48 text-xs">
+                  Relevant dates related to the URL being studied.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        <div className="flex w-full flex-col space-y-2">
+          <div className="flex flex-col">
+            <p className="text-start text-xs font-semibold text-muted-foreground">
+              First Submission
+            </p>
+            <p className="text-start text-xs text-muted-foreground">
+              {format(
+                new Date(first_submission_date * 1000),
+                "dd MMM yyyy hh:mm:ss a",
+              )}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <p className="text-start text-xs font-semibold text-muted-foreground">
+              Last Submission
+            </p>
+            <p className="text-start text-xs text-muted-foreground">
+              {format(
+                new Date(last_submission_date * 1000),
+                "dd MMM yyyy hh:mm:ss a",
+              )}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <p className="text-start text-xs font-semibold text-muted-foreground">
+              Last Analysis
+            </p>
+            <p className="text-start text-xs text-muted-foreground">
+              {format(
+                new Date(last_analysis_date * 1000),
+                "dd MMM yyyy hh:mm:ss a",
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col">
+        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
           <p className="text-center text-xs text-muted-foreground">
             HTTP Response
           </p>
@@ -99,6 +164,14 @@ export const DetailsContent = ({
             </p>
             <p className="text-start text-xs text-muted-foreground">
               {status_code}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <p className="text-start text-xs font-semibold text-muted-foreground">
+              Content Type
+            </p>
+            <p className="text-start text-xs text-muted-foreground">
+              {content_type}
             </p>
           </div>
         </div>

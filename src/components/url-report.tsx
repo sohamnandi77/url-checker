@@ -121,8 +121,12 @@ export const UrlReport = ({ data }: UrlReportProps) => {
               <TabsContent value="details">
                 <DetailsContent
                   categories={categories}
+                  first_submission_date={data.attributes.first_submission_date}
+                  last_submission_date={data.attributes.last_submission_date}
+                  last_analysis_date={data.attributes.last_analysis_date}
                   final_url={final_url}
                   status_code={status_code}
+                  content_type={content_type}
                   redirection_chain={redirection_chain}
                 />
               </TabsContent>
