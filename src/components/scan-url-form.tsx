@@ -45,7 +45,7 @@ export const ScanUrlForm = ({
 
       // analyse url
       const analyseResponse = await getRequest(`/analyses/${analysisId}`);
-      const id = analyseResponse.data.id.split("-")[1];
+      const id = analyseResponse.meta.url_info.id;
 
       // get url report
       const reportResponse = await getRequest(`/urls/${id}`);

@@ -41,7 +41,14 @@ export const UnshortenUrlForm = ({
       setLoading(true);
       // scan url
       const scanResponse = await postRequest("/urls", values);
-      const id = scanResponse.data.id.split("-")[1];
+      const analysisId = scanResponse.data.id;
+
+      // analyse url
+      const analyseResponse = await getRequest(`/analyses/${analysisId}`);
+      const id = analyseResponse.meta.url_info.id;
+
+      // delay for 1 second
+      await new Promise((resolve) => setTimeout(resolve, 3000));
 
       // get url report
       const reportResponse = await getRequest(`/urls/${id}`);
