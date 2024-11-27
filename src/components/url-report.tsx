@@ -52,7 +52,7 @@ export const UrlReport = ({ data }: UrlReportProps) => {
           <RadialProgress progress={progress} total={total} />
         </div>
         <div className="w-full flex-1 flex-col space-y-3">
-          <div className="flex items-center justify-start space-x-2 rounded-md bg-gray-200 px-3 py-2 dark:bg-neutral-700">
+          <div className="flex items-center justify-start space-x-2 rounded-md bg-muted px-3 py-2">
             {progress > 0 ? (
               <CircleAlert size={16} className="text-red-500" />
             ) : (

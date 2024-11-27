@@ -25,7 +25,7 @@ interface DetectionContentProps {
 export const DetectionContent = ({ analysis }: DetectionContentProps) => {
   return (
     <>
-      <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+      <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-muted px-2 py-1">
         <p className="text-center text-xs text-muted-foreground">
           Security vendors' analysis
         </p>

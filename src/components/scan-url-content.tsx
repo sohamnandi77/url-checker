@@ -44,7 +44,7 @@ export const ScanUrlContent = () => {
 
       {data && (
         <>
-          <Card className="relative">
+          <Card className="relative dark:bg-muted/30">
             <TooltipProvider delayDuration={100}>
               <Tooltip>
                 <TooltipTrigger asChild>

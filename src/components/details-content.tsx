@@ -36,7 +36,7 @@ export const DetailsContent = ({
   return (
     <div className="grid gap-2">
       <div className="flex flex-col">
-        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-muted px-2 py-1">
           <p className="text-center text-xs text-muted-foreground">
             Categories
           </p>
@@ -72,7 +72,7 @@ export const DetailsContent = ({
       </div>
 
       <div className="flex flex-col">
-        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-muted px-2 py-1">
           <p className="text-center text-xs text-muted-foreground">History</p>
           <TooltipProvider delayDuration={100}>
             <Tooltip>
@@ -128,7 +128,7 @@ export const DetailsContent = ({
       </div>
 
       <div className="flex flex-col">
-        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-muted px-2 py-1">
           <p className="text-center text-xs text-muted-foreground">
             HTTP Response
           </p>
@@ -178,7 +178,7 @@ export const DetailsContent = ({
       </div>
 
       <div className="flex flex-col">
-        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-gray-200 px-2 py-1 dark:bg-neutral-700">
+        <div className="my-1 flex items-center justify-center space-x-1.5 rounded-sm bg-muted px-2 py-1">
           <p className="text-center text-xs text-muted-foreground">
             Redirection chain
           </p>
