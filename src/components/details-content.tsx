@@ -59,7 +59,7 @@ export const DetailsContent = ({
         </div>
         <div className="flex w-full flex-col space-y-2">
           {Object.keys(categories).map((category, i) => (
-            <div className="flex flex-col">
+            <div className="flex flex-col" key={i}>
               <p className="text-start text-xs font-semibold text-muted-foreground">
                 {category}
               </p>
