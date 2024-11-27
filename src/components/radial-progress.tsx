@@ -37,7 +37,7 @@ export const RadialProgress = ({ progress, total }: RadialProgressProps) => {
           )}
           strokeWidth="3.5"
           strokeDasharray="100"
-          strokeDashoffset={100 - percentage}
+          strokeDashoffset={progress > 0 ? 100 - percentage : percentage}
           strokeLinecap="round"
         ></circle>
       </svg>
