@@ -64,7 +64,7 @@ export const DetailsContent = ({
                 <p className="text-start text-xs font-semibold text-muted-foreground">
                   {category}
                 </p>
-                <p className="text-start text-xs text-muted-foreground">
+                <p className="max-w-72 truncate text-start text-xs text-muted-foreground">
                   {categories[category]}
                 </p>
               </div>
@@ -168,7 +168,7 @@ export const DetailsContent = ({
             <p className="text-start text-xs font-semibold text-muted-foreground">
               Final URL
             </p>
-            <p className="text-start text-xs text-muted-foreground">
+            <p className="max-w-72 truncate text-start text-xs text-muted-foreground">
               {final_url}
             </p>
           </div>
@@ -217,7 +217,10 @@ export const DetailsContent = ({
           <div className="flex flex-col">
             {redirection_chain ? (
               redirection_chain.map((url, i) => (
-                <p className="text-start text-xs text-muted-foreground" key={i}>
+                <p
+                  className="max-w-72 truncate text-start text-xs text-muted-foreground"
+                  key={i}
+                >
                   {url}
                 </p>
               ))

@@ -75,8 +75,8 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
             </p>
           </div>
           <div className="flex flex-col">
-            <p className="text-xs text-muted-foreground">
-              {data.attributes.url}
+            <p className="max-w-56 truncate text-xs text-muted-foreground">
+              {data.attributes.url || "Unknown"}
             </p>
             <p className="text-xs text-muted-foreground">
               {data.attributes.url.split("/")[2]}
