@@ -54,7 +54,9 @@ export const ScanUrlContent = () => {
                     className="h-6 w-6"
                     asChild
                   >
-                    <a href="mailto:aduanskmm@mcmc.gov.my?cc=dev@smarttechtank.com&subject=Report%20Malicious%20URL">
+                    <a
+                      href={`mailto:aduanskmm@mcmc.gov.my?cc=dev@smarttechtank.com&subject=Report%20Malicious%20URL&body=I%20would%20like%20to%20lodge%20a%20report%20for%20this%20URL:%20${data.attributes.url || "Unknown"}`}
+                    >
                       <MessageSquareWarning />
                     </a>
                   </Button>
