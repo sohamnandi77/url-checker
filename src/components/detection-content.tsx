@@ -49,7 +49,13 @@ export const DetectionContent = ({ analysis }: DetectionContentProps) => {
       <div className="grid divide-y-[1px]">
         {Object.keys(analysis)
           .sort((a, b) => {
-            const order = ["malicious", "malware", "suspicious", "clean"];
+            const order = [
+              "malicious",
+              "malware",
+              "phishing",
+              "suspicious",
+              "clean",
+            ];
             const aValue = analysis[a].result;
             const bValue = analysis[b].result;
             let aIndex = order.indexOf(aValue);
@@ -68,7 +74,8 @@ export const DetectionContent = ({ analysis }: DetectionContentProps) => {
                 {analysis[engineName].result === "clean" ? (
                   <CheckCircle2 size={16} className="text-green-500" />
                 ) : analysis[engineName].result === "malicious" ||
-                  analysis[engineName].result === "malware" ? (
+                  analysis[engineName].result === "malware" ||
+                  analysis[engineName].result === "phishing" ? (
                   <CircleAlert size={16} className="text-red-500" />
                 ) : analysis[engineName].result === "suspicious" ? (
                   <Info size={16} className="text-yellow-500" />
