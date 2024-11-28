@@ -52,7 +52,32 @@ export const UnshortenUrlForm = ({
 
       // get url report
       const reportResponse = await getRequest(`/urls/${id}`);
-      setData(reportResponse.data);
+      const data = reportResponse.data;
+
+      if (
+        data.attributes &&
+        data.attributes.last_analysis_results &&
+        Object.keys(data.attributes.last_analysis_results).length > 0
+      ) {
+        setData(reportResponse.data);
+      } else {
+        // scan url again
+        const scanResponseAgain = await postRequest("/urls", values);
+        const analysisIdAgain = scanResponseAgain.data.id;
+
+        // analyse url again
+        const analyseResponseAgain = await getRequest(
+          `/analyses/${analysisIdAgain}`,
+        );
+        const idAgain = analyseResponseAgain.meta.url_info.id;
+
+        // delay for 10 seconds
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+
+        // get url report again
+        const reportResponseAgain = await getRequest(`/urls/${idAgain}`);
+        setData(reportResponseAgain.data);
+      }
     } catch (error) {
       console.error(error);
     } finally {
