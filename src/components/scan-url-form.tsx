@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,6 +40,7 @@ export const ScanUrlForm = ({
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
+
       // scan url
       const scanResponse = await postRequest("/urls", values);
       const analysisId = scanResponse.data.id;
@@ -79,6 +81,11 @@ export const ScanUrlForm = ({
         setData(reportResponseAgain.data);
       }
     } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Uh oh! Something went wrong. Please try again.",
+      );
       console.error(error);
     } finally {
       setLoading(false);

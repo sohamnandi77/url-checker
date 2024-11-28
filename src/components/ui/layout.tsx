@@ -3,6 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -19,6 +20,12 @@ export const Layout = ({
         <Header />
         <ScrollArea className="w-full">
           <div className="p-5">{children}</div>
+          <Toaster
+            richColors
+            position="bottom-center"
+            theme="light"
+            toastOptions={{}}
+          />
         </ScrollArea>
         <Footer />
       </div>
