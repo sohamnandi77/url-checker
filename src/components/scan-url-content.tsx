@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Undo2 } from "lucide-react";
+import { MessageSquareWarning, Undo2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ScanUrlForm } from "@/components/scan-url-form";
@@ -44,23 +44,46 @@ export const ScanUrlContent = () => {
 
       {data && (
         <Card className="relative dark:bg-muted/30">
-          <TooltipProvider delayDuration={100}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-2 top-2 h-6 w-6"
-                  onClick={() => setData(null)}
-                >
-                  <Undo2 />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="max-w-48 text-xs">Reset the URL scan report.</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <div className="absolute right-2 top-2 inline-flex justify-end space-x-2">
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6"
+                    asChild
+                  >
+                    <a href="mailto:aduanskmm@mcmc.gov.my?cc=dev@smarttechtank.com&subject=Report%20Malicious%20URL">
+                      <MessageSquareWarning />
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-48 text-xs">
+                    Report this URL as malicious.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6"
+                    onClick={() => setData(null)}
+                  >
+                    <Undo2 />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-48 text-xs">Reset the URL scan report.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
 
           <CardHeader className="p-4 pb-0">
             <CardTitle>URL Scan Report</CardTitle>
