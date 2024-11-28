@@ -33,8 +33,8 @@ export const UnshortenUrlResult = ({ data }: UnshortenUrlResultProps) => {
       <div className="flex w-full items-center space-x-2">
         <Input
           id="final-url"
-          type="url"
-          value={data.attributes.last_final_url}
+          type="text"
+          value={data.attributes.last_final_url || "Unknown"}
           readOnly
           ref={inputRef}
         />
