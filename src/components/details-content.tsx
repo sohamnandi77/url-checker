@@ -18,7 +18,7 @@ interface DetailsContentProps {
   last_submission_date: number;
   last_analysis_date: number;
   final_url: string;
-  status_code: number;
+  status_code: number | string;
   content_type: string;
   redirection_chain: string[];
 }
@@ -58,16 +58,24 @@ export const DetailsContent = ({
           </TooltipProvider>
         </div>
         <div className="flex w-full flex-col space-y-2">
-          {Object.keys(categories).map((category, i) => (
-            <div className="flex flex-col" key={i}>
-              <p className="text-start text-xs font-semibold text-muted-foreground">
-                {category}
-              </p>
+          {Object.keys(categories).length > 0 ? (
+            Object.keys(categories).map((category, i) => (
+              <div className="flex flex-col" key={i}>
+                <p className="text-start text-xs font-semibold text-muted-foreground">
+                  {category}
+                </p>
+                <p className="text-start text-xs text-muted-foreground">
+                  {categories[category]}
+                </p>
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col">
               <p className="text-start text-xs text-muted-foreground">
-                {categories[category]}
+                No categories were found.
               </p>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
@@ -96,10 +104,12 @@ export const DetailsContent = ({
               First Submission
             </p>
             <p className="text-start text-xs text-muted-foreground">
-              {format(
-                new Date(first_submission_date * 1000),
-                "dd MMM yyyy hh:mm:ss a",
-              )}
+              {first_submission_date > 0
+                ? format(
+                    new Date(first_submission_date * 1000),
+                    "dd MMM yyyy hh:mm:ss a",
+                  )
+                : "Unknown"}
             </p>
           </div>
           <div className="flex flex-col">
@@ -107,10 +117,12 @@ export const DetailsContent = ({
               Last Submission
             </p>
             <p className="text-start text-xs text-muted-foreground">
-              {format(
-                new Date(last_submission_date * 1000),
-                "dd MMM yyyy hh:mm:ss a",
-              )}
+              {last_submission_date > 0
+                ? format(
+                    new Date(last_submission_date * 1000),
+                    "dd MMM yyyy hh:mm:ss a",
+                  )
+                : "Unknown"}
             </p>
           </div>
           <div className="flex flex-col">
@@ -118,10 +130,12 @@ export const DetailsContent = ({
               Last Analysis
             </p>
             <p className="text-start text-xs text-muted-foreground">
-              {format(
-                new Date(last_analysis_date * 1000),
-                "dd MMM yyyy hh:mm:ss a",
-              )}
+              {last_analysis_date > 0
+                ? format(
+                    new Date(last_analysis_date * 1000),
+                    "dd MMM yyyy hh:mm:ss a",
+                  )
+                : "Unknown"}
             </p>
           </div>
         </div>
@@ -201,11 +215,17 @@ export const DetailsContent = ({
         </div>
         <div className="flex w-full flex-col space-y-2">
           <div className="flex flex-col">
-            {redirection_chain.map((url, i) => (
-              <p className="text-start text-xs text-muted-foreground" key={i}>
-                {url}
+            {redirection_chain ? (
+              redirection_chain.map((url, i) => (
+                <p className="text-start text-xs text-muted-foreground" key={i}>
+                  {url}
+                </p>
+              ))
+            ) : (
+              <p className="text-start text-xs text-muted-foreground">
+                No redirection chain found.
               </p>
-            ))}
+            )}
           </div>
         </div>
       </div>

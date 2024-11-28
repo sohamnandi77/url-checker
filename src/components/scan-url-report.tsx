@@ -20,15 +20,18 @@ interface ScanUrlReportProps {
 
 export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
   const now = new Date();
-  const date = new Date(data.attributes.last_analysis_date * 1000);
-  const time_diff = formatDistance(date, now, { addSuffix: true });
+  const date =
+    data.attributes.last_analysis_date &&
+    new Date(data.attributes.last_analysis_date * 1000);
+  const time_diff = date
+    ? formatDistance(date, now, { addSuffix: true })
+    : "Unknown";
 
-  const content_typeKey = Object.keys(
-    data.attributes.last_http_response_headers,
-  ).find((key) => key.toLowerCase() === "content-type");
-  const content_type = content_typeKey
-    ? data.attributes.last_http_response_headers[content_typeKey]
-    : "unknown";
+  const content_type = data.attributes.last_http_response_headers
+    ? (Object.keys(data.attributes.last_http_response_headers).find((key) =>
+        key.toLowerCase().includes("content-type"),
+      ) ?? "Unknown")
+    : "Unknown";
 
   const progress = data.attributes.last_analysis_stats.malicious;
   const total =
@@ -38,11 +41,11 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
     data.attributes.last_analysis_stats.harmless +
     data.attributes.last_analysis_stats.timeout;
 
-  const last_analysis_results = data.attributes.last_analysis_results;
+  const last_analysis_results = data.attributes.last_analysis_results || {};
 
   const categories = data.attributes.categories;
-  const final_url = data.attributes.last_final_url;
-  const status_code = data.attributes.last_http_response_code;
+  const final_url = data.attributes.last_final_url || "Unknown";
+  const status_code = data.attributes.last_http_response_code || "Unknown";
   const redirection_chain = data.attributes.redirection_chain;
 
   return (
@@ -83,9 +86,7 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
       <div className="mt-6 flex h-7 items-center justify-between">
         <div className="flex flex-col">
           <p className="text-xs font-semibold text-muted-foreground">Status</p>
-          <p className="text-xs text-muted-foreground">
-            {data.attributes.last_http_response_code}
-          </p>
+          <p className="text-xs text-muted-foreground">{status_code}</p>
         </div>
         <Separator orientation="vertical" />
         <div className="flex flex-col">
@@ -121,9 +122,13 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
               <TabsContent value="details">
                 <DetailsContent
                   categories={categories}
-                  first_submission_date={data.attributes.first_submission_date}
-                  last_submission_date={data.attributes.last_submission_date}
-                  last_analysis_date={data.attributes.last_analysis_date}
+                  first_submission_date={
+                    data.attributes.first_submission_date || 0
+                  }
+                  last_submission_date={
+                    data.attributes.last_submission_date || 0
+                  }
+                  last_analysis_date={data.attributes.last_analysis_date || 0}
                   final_url={final_url}
                   status_code={status_code}
                   content_type={content_type}

@@ -46,50 +46,56 @@ export const DetectionContent = ({ analysis }: DetectionContentProps) => {
           </Tooltip>
         </TooltipProvider>
       </div>
-      <div className="grid divide-y-[1px]">
-        {Object.keys(analysis)
-          .sort((a, b) => {
-            const order = [
-              "malicious",
-              "malware",
-              "phishing",
-              "suspicious",
-              "clean",
-            ];
-            const aValue = analysis[a].result;
-            const bValue = analysis[b].result;
-            let aIndex = order.indexOf(aValue);
-            let bIndex = order.indexOf(bValue);
-            if (aIndex === -1) aIndex = Infinity;
-            if (bIndex === -1) bIndex = Infinity;
-            return aIndex - bIndex;
-          })
-          .map((engineName, i) => (
-            <div
-              className="flex justify-between space-x-2 py-1.5 font-medium"
-              key={i}
-            >
-              <p className="text-xs text-muted-foreground">{engineName}</p>
-              <div className="flex items-center space-x-1.5">
-                {analysis[engineName].result === "clean" ? (
-                  <CheckCircle2 size={16} className="text-green-500" />
-                ) : analysis[engineName].result === "malicious" ||
-                  analysis[engineName].result === "malware" ||
-                  analysis[engineName].result === "phishing" ? (
-                  <CircleAlert size={16} className="text-red-500" />
-                ) : analysis[engineName].result === "suspicious" ? (
-                  <Info size={16} className="text-yellow-500" />
-                ) : (
-                  <CircleHelp size={16} className="text-gray-500" />
-                )}
-                <p className="text-xs text-muted-foreground">
-                  {analysis[engineName].result.charAt(0).toUpperCase() +
-                    analysis[engineName].result.slice(1)}
-                </p>
+      {Object.keys(analysis).length > 0 ? (
+        <div className="grid divide-y-[1px]">
+          {Object.keys(analysis)
+            .sort((a, b) => {
+              const order = [
+                "malicious",
+                "malware",
+                "phishing",
+                "suspicious",
+                "clean",
+              ];
+              const aValue = analysis[a].result;
+              const bValue = analysis[b].result;
+              let aIndex = order.indexOf(aValue);
+              let bIndex = order.indexOf(bValue);
+              if (aIndex === -1) aIndex = Infinity;
+              if (bIndex === -1) bIndex = Infinity;
+              return aIndex - bIndex;
+            })
+            .map((engineName, i) => (
+              <div
+                className="flex justify-between space-x-2 py-1.5 font-medium"
+                key={i}
+              >
+                <p className="text-xs text-muted-foreground">{engineName}</p>
+                <div className="flex items-center space-x-1.5">
+                  {analysis[engineName].result === "clean" ? (
+                    <CheckCircle2 size={16} className="text-green-500" />
+                  ) : analysis[engineName].result === "malicious" ||
+                    analysis[engineName].result === "malware" ||
+                    analysis[engineName].result === "phishing" ? (
+                    <CircleAlert size={16} className="text-red-500" />
+                  ) : analysis[engineName].result === "suspicious" ? (
+                    <Info size={16} className="text-yellow-500" />
+                  ) : (
+                    <CircleHelp size={16} className="text-gray-500" />
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    {analysis[engineName].result.charAt(0).toUpperCase() +
+                      analysis[engineName].result.slice(1)}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      ) : (
+        <p className="text-center text-sm text-muted-foreground">
+          No vendor analysis available.
+        </p>
+      )}
     </>
   );
 };
