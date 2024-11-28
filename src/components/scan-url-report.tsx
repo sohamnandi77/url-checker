@@ -28,9 +28,11 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
     : "Unknown";
 
   const content_type = data.attributes.last_http_response_headers
-    ? (Object.keys(data.attributes.last_http_response_headers).find((key) =>
-        key.toLowerCase().includes("content-type"),
-      ) ?? "Unknown")
+    ? (data.attributes.last_http_response_headers[
+        Object.keys(data.attributes.last_http_response_headers).find((key) =>
+          key.toLowerCase().includes("content-type"),
+        ) ?? ""
+      ] ?? "Unknown")
     : "Unknown";
 
   const progress = data.attributes.last_analysis_stats.malicious;
