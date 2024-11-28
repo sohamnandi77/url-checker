@@ -47,7 +47,7 @@ export const UnshortenUrlForm = ({
       const analyseResponse = await getRequest(`/analyses/${analysisId}`);
       const id = analyseResponse.meta.url_info.id;
 
-      // delay for 1 second
+      // delay for 3 second
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
       // get url report

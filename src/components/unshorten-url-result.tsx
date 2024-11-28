@@ -4,6 +4,12 @@ import { ClipboardIcon, CheckIcon } from "@radix-ui/react-icons";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 
 interface UnshortenUrlResultProps {
   data: any;
@@ -32,14 +38,31 @@ export const UnshortenUrlResult = ({ data }: UnshortenUrlResultProps) => {
           readOnly
           ref={inputRef}
         />
-        <Button
-          type="button"
-          variant="default"
-          className="size-9"
-          onClick={handleCopy}
-        >
-          {copied ? <CheckIcon /> : <ClipboardIcon />}
-        </Button>
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger
+              onClick={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <Button
+                type="button"
+                variant="default"
+                className="size-9"
+                onClick={handleCopy}
+              >
+                {copied ? <CheckIcon /> : <ClipboardIcon />}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              onPointerDownOutside={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <p className="max-w-48 text-xs">{copied ? "Copied!" : "Copy"}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );
