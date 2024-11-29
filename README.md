@@ -38,10 +38,14 @@ pnpm dev
 
 ![Dark mode](/screenshots/screenshot-2.png)
 
-#### Scan URL Result
+#### Scan URL result
 
-![Scan URL Result](/screenshots/screenshot-3.png)
+![Scan URL result](/screenshots/screenshot-3.png)
 
-#### Unshorten URL Result
+#### Unshorten URL result
 
-![Unshorten URL Result](/screenshots/screenshot-4.png)
+![Unshorten URL result](/screenshots/screenshot-4.png)
+
+#### Context menu
+
+![Context menu](/screenshots/screenshot-5.png)
