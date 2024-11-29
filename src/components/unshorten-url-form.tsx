@@ -97,6 +97,7 @@ export const UnshortenUrlForm = ({
 
   useEffect(() => {
     if (linkURL) {
+      form.reset({ url: linkURL });
       handleSubmit({ url: linkURL });
     }
   }, [linkURL]);

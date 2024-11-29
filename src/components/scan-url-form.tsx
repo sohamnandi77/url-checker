@@ -97,6 +97,7 @@ export const ScanUrlForm = ({
 
   useEffect(() => {
     if (linkURL) {
+      form.reset({ url: linkURL });
       handleSubmit({ url: linkURL });
     }
   }, [linkURL]);
