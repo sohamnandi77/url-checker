@@ -18,7 +18,12 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-export const ScanUrlContent = () => {
+interface ScanUrlContentProps {
+  url?: string;
+  setUrl?: (url: string) => void;
+}
+
+export const ScanUrlContent = ({ url, setUrl }: ScanUrlContentProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
 
@@ -34,6 +39,7 @@ export const ScanUrlContent = () => {
           </CardHeader>
           <CardContent className="space-y-2 p-6 pt-0">
             <ScanUrlForm
+              url={url}
               loading={loading}
               setLoading={setLoading}
               setData={setData}
@@ -75,7 +81,10 @@ export const ScanUrlContent = () => {
                     variant="ghost"
                     size="icon"
                     className="h-6 w-6"
-                    onClick={() => setData(null)}
+                    onClick={() => {
+                      setData(null);
+                      setUrl && setUrl("");
+                    }}
                   >
                     <Undo2 />
                   </Button>

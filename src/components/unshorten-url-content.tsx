@@ -18,7 +18,15 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-export const UnshortenUrlContent = () => {
+interface UnshortenUrlContentProps {
+  url?: string;
+  setUrl?: (url: string) => void;
+}
+
+export const UnshortenUrlContent = ({
+  url,
+  setUrl,
+}: UnshortenUrlContentProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
 
@@ -34,6 +42,7 @@ export const UnshortenUrlContent = () => {
           </CardHeader>
           <CardContent className="space-y-2 p-6 pt-0">
             <UnshortenUrlForm
+              url={url}
               loading={loading}
               setLoading={setLoading}
               setData={setData}
@@ -51,7 +60,10 @@ export const UnshortenUrlContent = () => {
                   variant="ghost"
                   size="icon"
                   className="absolute right-2 top-2 h-6 w-6"
-                  onClick={() => setData(null)}
+                  onClick={() => {
+                    setData(null);
+                    setUrl && setUrl("");
+                  }}
                 >
                   <Undo2 />
                 </Button>

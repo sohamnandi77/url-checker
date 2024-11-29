@@ -1,5 +1,6 @@
 import * as z from "zod";
 import { toast } from "sonner";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +17,7 @@ import {
 } from "@/components/ui/form";
 
 interface ScanUrlFormProps {
+  url?: string;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   setData: (data: any) => void;
@@ -26,6 +28,7 @@ const formSchema = z.object({
 });
 
 export const ScanUrlForm = ({
+  url: linkURL,
   loading,
   setLoading,
   setData,
@@ -33,7 +36,7 @@ export const ScanUrlForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      url: "",
+      url: linkURL || "",
     },
   });
 
@@ -91,6 +94,12 @@ export const ScanUrlForm = ({
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (linkURL) {
+      handleSubmit({ url: linkURL });
+    }
+  }, [linkURL]);
 
   return (
     <Form {...form}>

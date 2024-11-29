@@ -7,7 +7,11 @@ export default defineConfig({
   extensionApi: "chrome",
   modules: ["@wxt-dev/module-react"],
   manifest: {
+    name: "URL Checker",
+    description:
+      "URL Checker is an extension that allows you to check URLs for malicious content. Use it for your own safety.",
     host_permissions: ["<all_urls>"],
+    permissions: ["scripting", "contextMenus"],
   },
   vite: () => ({
     plugins: [
