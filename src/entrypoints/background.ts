@@ -1,14 +1,14 @@
 export default defineBackground(() => {
-  // Handle onInstalled
+  // handle onInstalled
   browser.runtime.onInstalled.addListener(() => {
-    // Create scan url context menu
+    // create scan url context menu
     browser.contextMenus.create({
       title: "Scan this URL",
       contexts: ["link"],
       id: "scan-url",
     });
 
-    // Create unshorten url context menu
+    // create unshorten url context menu
     browser.contextMenus.create({
       title: "Unshorten this URL",
       contexts: ["link"],
@@ -16,7 +16,7 @@ export default defineBackground(() => {
     });
   });
 
-  // Handle context menu clicks
+  // handle context menu clicks
   const onMenuClick = async (menu: any) => {
     const handleSendMessage = async (message: {
       tab?: string;
@@ -31,6 +31,7 @@ export default defineBackground(() => {
       // send message
       await browser.runtime.sendMessage(message);
     };
+
     switch (menu.menuItemId) {
       case "scan-url":
         handleSendMessage({ tab: "scanurl", url: menu.linkUrl });

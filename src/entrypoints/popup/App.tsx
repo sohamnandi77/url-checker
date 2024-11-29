@@ -24,7 +24,10 @@ export default function App() {
     <Layout>
       <Tabs
         value={tab}
-        onValueChange={(value) => setTab(value)}
+        onValueChange={(value) => {
+          setTab(value);
+          setUrl("");
+        }}
         className="w-[400px]"
       >
         <TabsList className="grid w-full grid-cols-2">
