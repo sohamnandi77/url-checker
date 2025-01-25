@@ -64,9 +64,13 @@ Here are some screenshots showcasing the extension's features:
 
 ![Scan URL result](/screenshots/screenshot-3.png)
 
+#### Malicious Scan URL Result
+
+![Scan URL result](/screenshots/screenshot-4.png)
+
 #### Context Menu
 
-![Context menu](/screenshots/screenshot-4.png)
+![Context menu](/screenshots/screenshot-5.png)
 
 ## Contributing
 
