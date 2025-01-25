@@ -22,13 +22,13 @@ export function ModeToggle() {
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
-            <SunIcon className="h-4 w-4 rotate-90 scale-0 transition-transform duration-500 ease-in-out dark:rotate-0 dark:scale-100" />
-            <MoonIcon className="scale-1000 absolute h-4 w-4 rotate-0 transition-transform duration-500 ease-in-out dark:-rotate-90 dark:scale-0" />
+            <SunIcon className="h-4 w-4 scale-0 rotate-90 transition-transform duration-500 ease-in-out dark:scale-100 dark:rotate-0" />
+            <MoonIcon className="absolute h-4 w-4 scale-100 rotate-0 transition-transform duration-500 ease-in-out dark:scale-0 dark:-rotate-90" />
             <span className="sr-only">Switch Theme</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent className="bg-secondary">
-          <p className="max-w-48 text-xs text-primary">Swith theme</p>
+          <p className="text-primary max-w-48 text-xs">Swith theme</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

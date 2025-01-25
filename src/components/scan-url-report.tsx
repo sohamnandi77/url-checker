@@ -108,7 +108,7 @@ export const ScanUrlReport = ({ data }: ScanUrlReportProps) => {
       <Separator className="mb-2 mt-6" />
 
       <Accordion type="single" collapsible className="w-full">
-        <AccordionItem className="!border-none" value="view-detail">
+        <AccordionItem className="border-none!" value="view-detail">
           <AccordionTrigger className="justify-center space-x-2 py-2 text-center text-xs">
             <p>View Details</p>
           </AccordionTrigger>
