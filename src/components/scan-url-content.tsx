@@ -49,31 +49,8 @@ export const ScanUrlContent = ({ url, setUrl }: ScanUrlContentProps) => {
       )}
 
       {data && (
-        <Card className="relative dark:bg-muted/30">
-          <div className="absolute right-2 top-2 inline-flex justify-end space-x-2">
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    asChild
-                  >
-                    <a
-                      href={`mailto:aduanskmm@mcmc.gov.my?cc=dev@smarttechtank.com&subject=Report%20Malicious%20URL&body=I%20would%20like%20to%20lodge%20a%20report%20for%20this%20URL:%20${data.attributes.url || "Unknown"}`}
-                    >
-                      <MessageSquareWarning />
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-48 text-xs">
-                    Report this URL as malicious.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+        <Card className="dark:bg-muted/30 relative">
+          <div className="absolute top-2 right-2 inline-flex justify-end space-x-2">
             <TooltipProvider delayDuration={100}>
               <Tooltip>
                 <TooltipTrigger asChild>
